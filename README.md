@@ -28,12 +28,12 @@ flowchart
         L3 --> L31[Unen los modulos del código para crear un archivo ejecutable]
         L3 --> L32[Hacen llamadas a las funciones referenciadas de librerias]
         L --> L4[Cargadores]
-        L4 --> L41[Asginan el espacio de memoria y las direcciones necesarias para el programa]
+        L4 --> L41[Asignan el espacio de memoria y las direcciones necesarias para el programa]
         L --> L5[Depuradores]
         L5 --> L51[Herramientas que facilitan la detección de errores]
         L5 --> L52[permiten ejecutar el programa paso a paso y seleccionar variables para visualizar sus cambios]
         L --> L6[Desensambladores]
-        L6 --> L61[Herramientas de ingeniería inversa que traducen el lenguaje maquina a ensamblador]
+        L6 --> L61[Herramientas de ingeniería inversa que traducen el lenguaje máquina a ensamblador]
         L --> L7[Decompiladores]
         L7 --> L71[Traducen código máquina a un lenguaje de alto nivel]
 
@@ -46,11 +46,11 @@ flowchart
 ### TP2: Lenguaje a crear 
 
 #### Objetivo
-El lenguaje a desarrollar es un lenguaje de proposito general, mayormente pensado para el uso didactico, con soporte de enteros y booleanos. Ofrece estructuras de control de tipo condicional y bucle, además de permitir la definición y asignación de variables.
+El lenguaje a desarrollar es de proposito general, mayormente pensado para el uso didáctico, con soporte de enteros y booleanos. Ofrece estructuras de control de tipo condicional y bucle, además de permitir la definición y asignación de variables.
 #### Alcance
-Pensado para demostrar conceptos de gramatica y semantica, no esoterico y no de producción.
+Pensado para demostrar conceptos de gramática y semántica, no esotérico y no de producción.
 
-El lenguaje esta creado para ofrecer las características de un lenguaje imprerativo, con tipado estático. No soporta recusión ni concurrencia.
+El lenguaje esta creado para ofrecer las características de un lenguaje imperativo, con tipado estático. No soporta recusión ni concurrencia.
 
 #### Especificaciones léxicas
 ##### Palabras reservadas
@@ -71,7 +71,7 @@ BOOLEANO | Indica que el tipo de dato de la variable declarada es booleano
 
 ##### Identificadores
 
-Los identificadores minimamente estan compuestos por una letra en minúscula (a-z) y pueden ser sucedidos por otra letra, un numero (0 - 9) o un guion bajo o medio (_/-). No pueden tener mayúsculas.
+Los identificadores minimamente estan compuestos por una letra en minúscula (a-z), o mayúscula (A-Z) y pueden ser sucedidos por otra letra, un numero (0 - 9) o un guion bajo o medio (_/-). 
 
 ##### Operadores
 |Tipo | Operador |
@@ -108,8 +108,8 @@ Expresión | Operaciones o identificadores que reprensentan o producen valores n
 - **Declaraciones**: Cada variable debe ser declarada una única vez. Las variables definidas dentro del programa son de ámbito local, mientras que las definidas dentro de las estructuras condicionales o de bucle corresponden a un subambito y por lo tanto solamente pueden ser usadas dentro de esa estructura.
 - **Asignaciones**: Deben realizarse sobre una variable existente con un identificador válido. El valor asignado tiene que ser del mismo tipo que la variable.
 - **Operaciones**: todas las operaciones aritméticas o booleanas son realizadas con notación prefija, de forma que el operador precede a los operandos. 
-     - **Aritméticas**: "+", "-", "*", "/", "%" → solo entre enteros.
-     - **Comparaciones**: "==", "!=", ">", "<" → ">" y "<" solo entre enteros.
+     - **Aritméticas**: "+", "-", "*", "/", "%" solamente entre enteros.
+     - **Comparaciones**: "==", "!=",">" y "<" solo entre enteros.
      - **Booleanas**: "&", "|", "!" solamente sobre valores booleanos.
 
 - **Condicional**: las condiciones deben ser expresiones booleanas válidas. Todas las variables definidas previamente pueden ser usadas dentro del bloque de sentencias, mientras que las definidas dentro del bloque solamente pueden usarse dentro del mismo.

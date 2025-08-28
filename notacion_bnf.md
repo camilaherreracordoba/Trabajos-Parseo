@@ -48,7 +48,7 @@
 <booleano> ::= "VERDADERO" | "FALSO"
 <entero> ::= <digito> | <digito> <entero>
 <digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-<letra> ::= "a" | ... | "z"
+<letra> ::= "a" | ... | "z" | "A" | ... | "Z"
 <guion> ::= "-" | "_"
 
 ```
