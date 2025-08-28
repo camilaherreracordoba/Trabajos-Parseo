@@ -8,9 +8,12 @@
 ### TP2: Lenguaje a crear 
 
 #### Objetivo
-El lenguaje a desarrollar es un lenguaje de proposito general, mayormente pensado para el uso didactico 
+El lenguaje a desarrollar es un lenguaje de proposito general, mayormente pensado para el uso didactico, con soporte de enteros y booleanos. Ofrece estructuras de control de tipo condicional y bucle, además de permitir la definición y asignación de variables.
 #### Alcance
- 
+Pensado para demostrar conceptos de gramatica y semantica, no esoterico y no de producción.
+
+El lenguaje esta creado para ofrecer las características de un lenguaje imprerativo, con tipado estático. No soporta recusión ni concurrencia.
+
 #### Especificaciones léxicas
 ##### Palabras reservadas
 
@@ -22,7 +25,7 @@ SALIDA:| Imprime una expresion númerica o booleana.
 SI: | Inicia una estructura condicional (If)
 ENTONCES:| Indica el inicio del bloque a ejecutar si la condición es VERDADERA
 SINO:| Indica el bloque a ejecutar si la condición es FALSA
-MIENTRAS:| Define la condición a cumplir para ejecutar un bucle (Do-while y While)
+MIENTRAS:| Define la condición a cumplir para ejecutar un bucle (While)
 HACER: | Indica el bloque de sentencias a ejecutar si la condición del bucle es verdadera
 VAR | Inicia la declaración de una variable
 ENTERO | Indica que el tipo de dato de la variable declarada es entero
@@ -37,7 +40,7 @@ Los identificadores minimamente estan compuestos por una letra en minúscula (a-
 |-----|----------|
 | Aritmetico | "+", "-", "/", "*", "%" |
 | Logico | "&", "\|" |
-| Comparación | "==", "/=", ">", "<" | 
+| Comparación | "==", "!=", ">", "<" | 
 | Asignación | "=" |
 | Negación | "!" | 
 | Fin de sentencia | ";" |
@@ -48,7 +51,7 @@ Los identificadores minimamente estan compuestos por una letra en minúscula (a-
 |Entero | (0-9)+ |
 
 #### Especificaciones sintácticas
-[Notación BNF del lenguaje](bnf.md)
+[Notación BNF del lenguaje](notacion_bnf.md)
 
 Regla | Especificación
 -------------|------------
@@ -64,14 +67,14 @@ Expresión | Operaciones o identificadores que reprensentan o producen valores n
 
 #### Especificaciones semánticas
 
-Regla | Especificación
--------------|------------
-Estructura del programa | Tiene que tener siempre un bloque válido entre INICIO y FIN.
-Bloque | Todas las sentencias deben estar definidas correctamente, aunque también puede ser un bloque vacío.
-Sentencia | Debe ser una declaración, una asignación, una salida, una estructura condicional o un bucle.
-Declaración | Una variable debe ser definida una sola vez, y su valor debe coincidir con el tipo declarado.
-Asignación | Sólo debe poder asignarse el valor a una variable existente y el tipo de dato de la expresión asignada debe coincidir con el de dicha variable.
-Salida | La expresión de salida debe ser una expresión válida.
-Condicional | La condición debe ser una expresión booleana válida o una variable que contenga una expresión booleana como valor. Los bloques a ejecutar dependiendo de la condición deben ser válidos.
-Bucle | La condición para el bucle debe ser una expresión booleana. El bucle debe ejecutarse de forma consecutiva hasta que la condición cambie. 
-Expresión | Una expresión booleana solo puede usar operadores lógicos o de comparación, mientras que una numérica solamente puede usar operadores aritméticos. Los identificadores deben estar previamente declarados.
+- **Declaraciones**: Cada variable debe ser declarada una única vez. Las variables definidas dentro del programa son de ámbito local, mientras que las definidas dentro de las estructuras condicionales o de bucle corresponden a un subambito y por lo tanto solamente pueden ser usadas dentro de esa estructura.
+- **Asignaciones**: Deben realizarse sobre una variable existente con un identificador válido. El valor asignado tiene que ser del mismo tipo que la variable.
+- **Operaciones**: todas las operaciones aritméticas o booleanas son realizadas con notación prefija, de forma que el operador precede a los operandos. 
+     - **Aritméticas**: "+", "-", "*", "/", "%" → solo entre enteros.
+     - **Comparaciones**: "==", "!=", ">", "<" → ">" y "<" solo entre enteros.
+     - **Booleanas**: "&", "|", "!" solamente sobre valores booleanos.
+
+- **Condicional**: las condiciones deben ser expresiones booleanas válidas. Todas las variables definidas previamente pueden ser usadas dentro del bloque de sentencias, mientras que las definidas dentro del bloque solamente pueden usarse dentro del mismo.
+- **Bucle**: las condiciones deben ser expresiones booleanas válidas. Todas las variables definidas previamente pueden ser usadas dentro del bloque de sentencias, mientras que las definidas dentro del bloque solamente pueden usarse dentro del mismo.
+- **Salida**: Solamente imprime expresiones válidas bien tipadas.
+- **Errores**: en caso de no respetarse las especificaciones correspondietnes a cada caso, se debe lanzar un mensaje de error dando detalle para cada uno.
