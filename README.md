@@ -1,8 +1,46 @@
 # Trabajos-Parseo
 
 ### TP1: Mapa conceptual
-[![mapa](https://mermaid.ink/img/pako:eNp1Vs1y4zYMfhWOzk4mkv8SHzqz6zibttmZnc72UmUPNAU7zFCkFhTdJpk8TI899LSP4BcrQNGJZbu-SCZI4MP3AaBeMuUqyGbZyrg_1YPE9t4K-n0ov6Ksgmodgv-W1sTZ2U_iprwJVuntD5uWb-Lyp_I3UHoJVmjrWwxKaWfBi0pW0gtaDlYYsOsgH0GsAtgWRAVCmtYJqzdgkrdPnbe8nDu70YAtHQUj1PZHpddOyJ4ft3wEOq9c3SBYr5cGRCNR8okGnQIvK4c9-B_Lr7pxu5Q-xrV5-bNtt_8gOWmhb7ouF9bLemnY0YFtQRjrRr-bOuM8Gn8pF4-gQiutqDSCamUdczbEhrb7BEEvJeLLpSjX0dHtARNvO-EdGNH4xlD0J0UtvwdNz4pSwpreKpncLqLbX1lg61cOaxnF2WdYig2gZ40FkJuNNBH7gYoUaSkf-_LtSOiC3JW3gChrTcfljjz-3XXmvFxUer_Eoi1Pxrz8wtA5bwOAAwFeoV5qFE-idpVeaSWRdV5TCHnSRcHkpRwJg0MbCaqoMBCdMY61ADpfcRV1lfam6THeovyC8F5YfdhF2pOXnxM4m-ow4hOSIrHcu9KMSFK0_X7qOaOIAaqovGYVkU8wm6idHxB6ZQIRYvQSAbf_UnE9CR98q9vwxLzRQi0VuoOu5FzZ5llX6mZ6baiMeOl7IKE91y1jC_x6Qrkh9YWRz8csDJM9L3-3DMB51irws9rr49ilCoESopKSqB70xgnoWoba-JTLoryVin0aopOnioyAVzyOYlYIK8CYDluJ3Y4WfSqBUTmXuD7GP0rmvPzg10R41BB8QxJFwWqoHXkkmjl2bO0U3QKXBUYu32dQ1P44_Li8hibgcfxxsue91omqrAiD0ayM6fpaxbJhVLT1_xwVZbProkQv9sqykZ6bPj6odsB0CdGuDSdDWqR8NtoHafQzWajChKLho90JZieUmocTUzPumaRNB_lRDtquwepYxfTOA0jGtNt4ER0Mv914k_tj8BjLlLCo_pB-2zFNW_J01cH7DKy3f-_cHwy83n21G3kHQS-70Xoy6GXakpd3AL25m-7EwxnLk-lJEDOA_Tl9MJhdS02-O_YtG2Rr1FU2o56HQVZTBUj-m70wlvusfYAa7rMZvVawksG099m9faVjjbR_OFfvTqIL64dstpLG07_QVLKFay25dN62gK0A5y7YNpsVV5PoI5u9ZH9ls7NRMT0vJsPLfDzOL4bT6eV0kD3R-vR8PJqMR1fFdDgdjfLx1esge45xi_PhRX5ZDPPhVX51MZmOBhnES-Jz96ESv1de_wMJQt_Q?type=png)](https://mermaid.live/edit#pako:eNp1Vs1y4zYMfhWOzk4mkv8SHzqz6zibttmZnc72UmUPNAU7zFCkFhTdJpk8TI899LSP4BcrQNGJZbu-SCZI4MP3AaBeMuUqyGbZyrg_1YPE9t4K-n0ov6Ksgmodgv-W1sTZ2U_iprwJVuntD5uWb-Lyp_I3UHoJVmjrWwxKaWfBi0pW0gtaDlYYsOsgH0GsAtgWRAVCmtYJqzdgkrdPnbe8nDu70YAtHQUj1PZHpddOyJ4ft3wEOq9c3SBYr5cGRCNR8okGnQIvK4c9-B_Lr7pxu5Q-xrV5-bNtt_8gOWmhb7ouF9bLemnY0YFtQRjrRr-bOuM8Gn8pF4-gQiutqDSCamUdczbEhrb7BEEvJeLLpSjX0dHtARNvO-EdGNH4xlD0J0UtvwdNz4pSwpreKpncLqLbX1lg61cOaxnF2WdYig2gZ40FkJuNNBH7gYoUaSkf-_LtSOiC3JW3gChrTcfljjz-3XXmvFxUer_Eoi1Pxrz8wtA5bwOAAwFeoV5qFE-idpVeaSWRdV5TCHnSRcHkpRwJg0MbCaqoMBCdMY61ADpfcRV1lfam6THeovyC8F5YfdhF2pOXnxM4m-ow4hOSIrHcu9KMSFK0_X7qOaOIAaqovGYVkU8wm6idHxB6ZQIRYvQSAbf_UnE9CR98q9vwxLzRQi0VuoOu5FzZ5llX6mZ6baiMeOl7IKE91y1jC_x6Qrkh9YWRz8csDJM9L3-3DMB51irws9rr49ilCoESopKSqB70xgnoWoba-JTLoryVin0aopOnioyAVzyOYlYIK8CYDluJ3Y4WfSqBUTmXuD7GP0rmvPzg10R41BB8QxJFwWqoHXkkmjl2bO0U3QKXBUYu32dQ1P44_Li8hibgcfxxsue91omqrAiD0ayM6fpaxbJhVLT1_xwVZbProkQv9sqykZ6bPj6odsB0CdGuDSdDWqR8NtoHafQzWajChKLho90JZieUmocTUzPumaRNB_lRDtquwepYxfTOA0jGtNt4ER0Mv914k_tj8BjLlLCo_pB-2zFNW_J01cH7DKy3f-_cHwy83n21G3kHQS-70Xoy6GXakpd3AL25m-7EwxnLk-lJEDOA_Tl9MJhdS02-O_YtG2Rr1FU2o56HQVZTBUj-m70wlvusfYAa7rMZvVawksG099m9faVjjbR_OFfvTqIL64dstpLG07_QVLKFay25dN62gK0A5y7YNpsVV5PoI5u9ZH9ls7NRMT0vJsPLfDzOL4bT6eV0kD3R-vR8PJqMR1fFdDgdjfLx1esge45xi_PhRX5ZDPPhVX51MZmOBhnES-Jz96ESv1de_wMJQt_Q)
+```mermaid
+flowchart
+    A[Traductores]
+    A --> F[Función]
+    F --> G[Reciben instrucciones dadas en un lenguaje fuente de alto nivel]
+    G --> G1[Convierten el código a un lenguaje objeto comprensible para el procesador]
+    A --> B[Tipos]
+    B --> C[Intérpretes]
+    B --> D[Ensambladores]
+    B --> E[Compiladores]
 
+    C --> J[Ejecutan directamente las intrucciones de un lenguaje dado]
+    D --> H[Convierten el lenguaje ensamblador al código de una maquina determinada]
+    E --> K[Transforman un código a una versión equivalente en un lenguaje de bajo nivel]
+    
+
+    E --> L[Herramientas]
+        L --> L1[Editores]
+        L1 --> L11[Permiten leer, escribir y modificar programas]
+        L1 --> L12[Conforman entorno de desarrollo integrado con el compilador]
+        L --> L2[Preprocesadores]
+        L2 --> L21[Modifican el programa antes del proceso de compilación]
+        L2 --> L22[Pueden eliminar comentarios, incluir librerías y sustituyen las macro instrucciones con las sentencias por las que estan compuestas]
+        L --> L3[Enlazadores]
+        L3 --> L31[Unen los modulos del código para crear un archivo ejecutable]
+        L3 --> L32[Hacen llamadas a las funciones referenciadas de librerias]
+        L --> L4[Cargadores]
+        L4 --> L41[Asginan el espacio de memoria y las direcciones necesarias para el programa]
+        L --> L5[Depuradores]
+        L5 --> L51[Herramientas que facilitan la detección de errores]
+        L5 --> L52[permiten ejecutar el programa paso a paso y seleccionar variables para visualizar sus cambios]
+        L --> L6[Desensambladores]
+        L6 --> L61[Herramientas de ingeniería inversa que traducen el lenguaje maquina a ensamblador]
+        L --> L7[Decompiladores]
+        L7 --> L71[Traducen código máquina a un lenguaje de alto nivel]
+
+    
+        L --> L8[Transpiladores]
+        L8 --> L81[Leen un código fuente en un lenguaje dado y generan un código equivalente en otro lenguaje]
+```
 
 
 ### TP2: Lenguaje a crear 
