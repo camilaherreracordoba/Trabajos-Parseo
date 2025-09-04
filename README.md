@@ -46,11 +46,11 @@ flowchart
 ### TP2: Lenguaje a crear 
 
 #### Objetivo
-El lenguaje a desarrollar es de proposito general, mayormente pensado para el uso didáctico, con soporte de enteros y booleanos. Ofrece estructuras de control de tipo condicional y bucle, además de permitir la definición y asignación de variables.
+El lenguaje a desarrollar es un lenguaje de dominio específico procedural para la manipulación de **bases de datos**. Cuenta con tipado estático y soporte de estructuras de control (condicionales y bucles). Permite definir variables, tablas de datos y realiza también consultas básicas. Las operaciones aritméticas y lógicas se usan con notación polaca (prefija), y las palabras claves están en español.
 #### Alcance
-Pensado para demostrar conceptos de gramática y semántica, no esotérico y no de producción.
+Su función es simular operaciones de SQL procedural en memoria y ejecutar consultas con expresiones booleanas y aritméticas en notación prefija.
 
-El lenguaje esta creado para ofrecer las características de un lenguaje imperativo, con tipado estático. No soporta recusión ni concurrencia.
+No soporta joins complejos, subconsultas anidadas, recursión ni concurrencia. No interactúa con archivos ni bases de datos externas (datos en memoria únicamente)
 
 #### Especificaciones léxicas
 ##### Palabras reservadas
@@ -68,6 +68,17 @@ HACER: | Indica el bloque de sentencias a ejecutar si la condición del bucle es
 VAR | Inicia la declaración de una variable
 ENTERO | Indica que el tipo de dato de la variable declarada es entero
 BOOLEANO | Indica que el tipo de dato de la variable declarada es booleano
+TABLA | Indica que la variable declarada es una tabla en memoria
+
+#### Palabra reservadas operaciones procedurales
+
+Palabra |  Significado
+--------|-------
+SELECCIONAR	| Inicia una consulta sobre una tabla declarada
+DE | Indica la tabla fuente de la consulta
+DONDE | Especifica una condición de filtrado (equivalente a WHERE)
+AGRUPAR POR | Agrupa los resultados de la consulta según una o más columnas
+ORDENAR POR | Ordena los resultados según una o más columnas
 
 ##### Identificadores
 
@@ -87,9 +98,10 @@ Los identificadores minimamente estan compuestos por una letra en minúscula (a-
 ------------------|--------------
 | Booleano | "VERDADERO", "FALSO" |
 |Entero | (0-9)+ |
-
+|Cadena | Secuencias de caracteres entre comillas "..."|
+| Tabla | conjunto de filas en memoria
 #### Especificaciones sintácticas
-[Notación BNF del lenguaje](notacion_bnf.md)
+[Notación BNF del lenguaje](notacion_bnf_v2.md)
 
 Regla | Especificación
 -------------|------------
@@ -116,3 +128,4 @@ Expresión | Operaciones o identificadores que reprensentan o producen valores n
 - **Bucle**: las condiciones deben ser expresiones booleanas válidas. Todas las variables definidas previamente pueden ser usadas dentro del bloque de sentencias, mientras que las definidas dentro del bloque solamente pueden usarse dentro del mismo.
 - **Salida**: Solamente imprime expresiones válidas bien tipadas.
 - **Errores**: en caso de no respetarse las especificaciones correspondietnes a cada caso, se debe lanzar un mensaje de error dando detalle para cada uno.
+- **Consultas**: filtran datos en memoria según la expresión booleana en DONDE.
