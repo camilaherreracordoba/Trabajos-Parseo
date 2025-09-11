@@ -1,3 +1,4 @@
+```bnf
 <programa> ::= "INICIO:" <bloque> "FIN"
 
 <bloque> ::= <sentencia> | <sentencia> <bloque>
@@ -62,3 +63,4 @@
 <caracter> ::= <letra> | <digito> | "-" | "_"
 <letra> ::= "a" | ... | "z" | "A" | ... | "Z"
 <digito> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+```
