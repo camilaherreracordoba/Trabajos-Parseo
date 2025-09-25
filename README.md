@@ -216,15 +216,15 @@ FIN
 | `INICIO: <sentencia> <bloque> FIN`                 | `<bloque> ::= <sentencia> <bloque>` |
 | `INICIO: <sentencia> <sentencia> <bloque> FIN`     | `<bloque> ::= <sentencia> <bloque>` |
 | `INICIO: <sentencia> <sentencia> <sentencia> <vacio> FIN` | `<bloque> ::= <vacio>` |
-| Última sentencia: `SALIDA: <expresion> ;`          | `<sentencia> ::= <salida> ;` |
+| `SALIDA: <expresion> ;`          | `<sentencia> ::= <salida> ;` |
 | `<expresion> ::= <arit_pref>`                       | `<arit_pref> ::= <op_aritmetico> <expresion> <expresion>` |
 | `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
-| Resultado: `SALIDA: + 7 9 ;`                        | - |
-| Segunda sentencia: `VAR y = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
+|`SALIDA: + 7 9 ;`                        | - |
+|`VAR y = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
 | `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
-| Resultado: `VAR y = 9 ;`                            | - |
-| Primera sentencia: `VAR x = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
+|`VAR y = 9 ;`                            | - |
+|`VAR x = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
 | `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
-| Resultado: `VAR x = 7 ;`                            | - |
+`VAR x = 7 ;`                            | - |
 | `<vacio> ::= λ`                                     | `<bloque> ::= <vacio>` |
-| Combinación final: `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 9 ; FIN` | - |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 9 ; FIN` | - |
