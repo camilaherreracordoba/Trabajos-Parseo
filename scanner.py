@@ -90,7 +90,13 @@ def t_error(t):
 
 lexer = lex.lex()
 
-
+data2 = '''
+INICIO
+SALIDA: 5; 
+VAR x = + 2 3; 
+ASIGNAR x = * x 2;
+FIN
+'''
 data = '''
 INICIO:
 
@@ -126,6 +132,14 @@ FIN
 
 '''
 
+lexer = lex.lex()
+
+# Cargar el código en el lexer
 lexer.input(data)
-for tok in lexer:
+
+# Leer e imprimir tokens
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
     print(tok)

@@ -46,7 +46,7 @@ flowchart
 ### TP2: Lenguaje a crear 
 
 #### Objetivo
-El lenguaje a desarrollar es un lenguaje de dominio específico procedural para la manipulación de **bases de datos**. Cuenta con tipado estático y soporte de estructuras de control (condicionales y bucles). Permite definir variables, tablas de datos y realiza también consultas básicas. Las operaciones aritméticas y lógicas se usan con notación polaca (prefija), y las palabras claves están en español.
+El lenguaje a desarrollar es un lenguaje de dominio específico procedural para la manipulación de **bases de datos**. Cuenta con soporte de estructuras de control (condicionales y bucles). Permite definir variables, tablas de datos y realiza también consultas básicas. Las operaciones aritméticas y lógicas se usan con notación polaca (prefija), y las palabras claves están en español.
 #### Alcance
 Su función es simular operaciones de SQL procedural en memoria y ejecutar consultas con expresiones booleanas y aritméticas en notación prefija.
 
@@ -129,3 +129,102 @@ Expresión | Operaciones o identificadores que reprensentan o producen valores n
 - **Salida**: Solamente imprime expresiones válidas bien tipadas.
 - **Errores**: en caso de no respetarse las especificaciones correspondietnes a cada caso, se debe lanzar un mensaje de error dando detalle para cada uno.
 - **Consultas**: filtran datos en memoria según la expresión booleana en DONDE.
+
+
+#### Ejemplo del lenguaje
+```lisp
+INICIO:
+
+VAR empleados TABLA = [
+	{ nombre: "Ana", edad: 30, salario: 2000, departamento: "Ventas" },
+	{ nombre: "Luis", edad: 45, salario: 3000, departamento: "Ventas" },
+	{ nombre: "Marta", edad: 29, salario: 2500, departamento: "IT" },
+	{ nombre: "Pedro", edad: 35, salario: 2800, departamento: "IT" }
+];
+
+VAR bono = + 500 200;
+
+ASIGNAR bono = * bono 2;
+
+SALIDA: bono;
+
+SI: > bono 1000 ENTONCES:
+	SALIDA: "Bono mayor a mil"
+SINO:
+	SALIDA: "Bono menor o igual a mil";
+
+MIENTRAS: < bono 3000 HACER:
+	ASIGNAR bono = + bono 100;
+	SALIDA: bono;
+
+SALIDA: SELECCIONAR nombre, salario DE empleados DONDE > salario 2500;
+
+SALIDA: SELECCIONAR departamento, salario DE empleados 
+        AGRUPAR POR departamento 
+        ORDENAR POR salario;
+
+FIN
+
+```
+
+### ejemplo de derivación por izquierda
+
+```
+INICIO:
+VAR x = 7;
+VAR y = 9;
+SALIDA: + 7 9;
+FIN
+```
+
+| Cadena actual                                    | Regla a aplicar |
+|----------------------------------------------------|----------------|
+| `<programa>`                                        | `<programa> ::= INICIO: <bloque> FIN` |
+| `INICIO: <bloque> FIN`                              | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: <sentencia> <bloque> FIN`                 | `<sentencia> ::= <declaracion_var> ;` |
+| `INICIO: <declaracion_var> ; <bloque> FIN`         | `<declaracion_var> ::= VAR <identificador> = <expresion>` |
+| `INICIO: VAR <identificador> = <expresion> ; <bloque> FIN` | `<identificador> ::= <letra> <resto_identificador>` |
+| `INICIO: VAR x = <expresion> ; <bloque> FIN`       | `<expresion> ::= <literal>` |
+| `INICIO: VAR x = <literal> ; <bloque> FIN`         | `<literal> ::= <entero>` |
+| `INICIO: VAR x = 7 ; <bloque> FIN`                 | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: VAR x = 7 ; <sentencia> <bloque> FIN`     | `<sentencia> ::= <declaracion_var> ;` |
+| `INICIO: VAR x = 7 ; VAR <identificador> = <expresion> ; <bloque> FIN` | `<identificador> ::= <letra>` |
+| `INICIO: VAR x = 7 ; VAR y = <expresion> ; <bloque> FIN` | `<expresion> ::= <literal>` |
+| `INICIO: VAR x = 7 ; VAR y = <literal> ; <bloque> FIN` | `<literal> ::= <entero>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; <bloque> FIN`     | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; <sentencia> <bloque> FIN` | `<sentencia> ::= <salida> ;` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: <expresion> ; <bloque> FIN` | `<expresion> ::= <arit_pref>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: <arit_pref> ; <bloque> FIN` | `<arit_pref> ::= <op_aritmetico> <expresion> <expresion>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + <expresion> <expresion> ; <bloque> FIN` | `<expresion> ::= <literal>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 <expresion> ; <bloque> FIN` | `<expresion> ::= <literal>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 9 ; <bloque> FIN` | `<bloque> ::= <vacio>` |
+| `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 9 ; FIN` | `<vacio> ::= λ` |
+
+### ejemplo de derivacion por derecha
+```
+INICIO:
+VAR x = 7;
+VAR y = 9;
+SALIDA: + 7 9;
+FIN
+```
+
+| Cadena Actual                                   | Regla a aplicar |
+|----------------------------------------------------|----------------|
+| `<programa>`                                        | `<programa> ::= INICIO: <bloque> FIN` |
+| `INICIO: <bloque> FIN`                              | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: <sentencia> <bloque> FIN`                 | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: <sentencia> <sentencia> <bloque> FIN`     | `<bloque> ::= <sentencia> <bloque>` |
+| `INICIO: <sentencia> <sentencia> <sentencia> <vacio> FIN` | `<bloque> ::= <vacio>` |
+| Última sentencia: `SALIDA: <expresion> ;`          | `<sentencia> ::= <salida> ;` |
+| `<expresion> ::= <arit_pref>`                       | `<arit_pref> ::= <op_aritmetico> <expresion> <expresion>` |
+| `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
+| Resultado: `SALIDA: + 7 9 ;`                        | - |
+| Segunda sentencia: `VAR y = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
+| `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
+| Resultado: `VAR y = 9 ;`                            | - |
+| Primera sentencia: `VAR x = <expresion> ;`         | `<sentencia> ::= <declaracion_var> ;` |
+| `<expresion> ::= <literal>`                          | `<literal> ::= <entero>` |
+| Resultado: `VAR x = 7 ;`                            | - |
+| `<vacio> ::= λ`                                     | `<bloque> ::= <vacio>` |
+| Combinación final: `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + 7 9 ; FIN` | - |
