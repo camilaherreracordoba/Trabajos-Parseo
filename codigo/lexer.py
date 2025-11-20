@@ -1,11 +1,11 @@
 import ply.lex as lex
 
+# ------------------palabras reservadas ----------------------
 reserved = {
     'INICIO': 'INICIO',
     'FIN': 'FIN',
     'VAR': 'VAR',
     'TABLA': 'TABLA',
-    'ASIGNAR': 'ASIGNAR',
     'SALIDA': 'SALIDA',
     'SI': 'SI',
     'ENTONCES': 'ENTONCES',
@@ -20,9 +20,9 @@ reserved = {
     'ORDENAR': 'ORDENAR',
     'VERDADERO': 'VERDADERO',
     'FALSO': 'FALSO',
+    'IGUALES': 'IGUALES',
 }
-
-
+# ---------------- tokens ----------------------------------
 tokens = [
     'IDENTIFICADOR',
     'ENTERO',
@@ -38,78 +38,93 @@ tokens = [
     'AND', 'OR', 'NOT',
 ] + list(reserved.values())
 
+# ----------- simbolos --------------------------------------
 t_PUNTOYCOMA   = r';'
-t_IGUAL        = r'='
 t_CORCHETE_IZQ = r'\['
 t_CORCHETE_DER = r'\]'
 t_LLAVE_IZQ    = r'\{'
 t_LLAVE_DER    = r'\}'
 t_COMA         = r','
 t_DOSPUNTOS    = r':'
-
-
+# --------- operadores ------------------
+# comparacion
 t_IGUALIGUAL   = r'=='
 t_DISTINTO     = r'!='
 t_MAYOR        = r'>'
 t_MENOR        = r'<'
+# asignacion
+t_IGUAL        = r'='
+# logicos
 t_AND          = r'&'
 t_OR           = r'\|'
 t_NOT          = r'!'
+# aritmeticos
 t_MAS          = r'\+'
 t_MENOS        = r'-'
 t_MULT         = r'\*'
 t_DIV          = r'/'
 t_MOD          = r'%'
-
-
+# --------------------------------------
+#-------------- Literales ----------------- 
+# enteros
 def t_ENTERO(t):
     r'\d+'
+    # castea a int
     t.value = int(t.value)
     return t
-
+# cadenas
 def t_CADENA(t):
     r'\"([^\\\n]|(\\.))*?\"'
-    t.value = t.value[1:-1]  
+    # se excluyen las comillas del resto de la cadena
+    t.value = t.value[1:-1]
+    t.lexer.lineno += t.value.count('\\n')
     return t
 
+# verificacion de Identificador o palabra reservada (en mayuscula)
 def t_IDENTIFICADOR(t):
     r'[a-zA-Z][a-zA-Z0-9_-]*'
-    t.type = reserved.get(t.value.upper(), 'IDENTIFICADOR')
+    if t.value in reserved: 
+        t.type = reserved[t.value]
     return t
 
-
-t_ignore = ' \t'
-
+# tabulaciones
+t_ignore = " \t"
+# salto de linea
 def t_newline(t):
     r'\n+'
-    t.lexer.lineno += len(t.value)
-
+    t.lexer.lineno += t.value.count("\n")
+# errores
 def t_error(t):
-    print(f"Carácter ilegal '{t.value[0]}' en la línea {t.lineno}")
+    print("caracter ilegal '%s'" % t.value[0])
     t.lexer.skip(1)
+# comentarios (no especificado en la gramatica pero sirve)
+def t_comment(t):
+    r'//.*'
+    pass
 
 lexer = lex.lex()
 
-data2 = '''
-INICIO
-SALIDA: 5; 
-VAR x = + 2 3; 
-ASIGNAR x = * x 2;
-FIN
-'''
+
 data = '''
 INICIO:
+VAR x = 7;
+VAR y = 9;
+SALIDA: + x y;
+FIN
+'''
+data0 = '''
+INICIO:
 
-VAR empleados TABLA = [
+VAR TABLA empleados = [
 	{ nombre: "Ana", edad: 30, salario: 2000, departamento: "Ventas" },
 	{ nombre: "Luis", edad: 45, salario: 3000, departamento: "Ventas" },
 	{ nombre: "Marta", edad: 29, salario: 2500, departamento: "IT" },
-	{ nombre: "Pedro", edad: 35, salario: 2800, departamento: "IT" }
+	{ nombre: "Pedro", edad: 35, salario: 2800, departamento: "IT" },
 ];
 
 VAR bono = + 500 200;
 
-ASIGNAR bono = * bono 2;
+bono = * bono 2;
 
 SALIDA: bono;
 
@@ -119,7 +134,7 @@ SINO:
 	SALIDA: "Bono menor o igual a mil";
 
 MIENTRAS: < bono 3000 HACER:
-	ASIGNAR bono = + bono 100;
+	bono = + bono 100;
 	SALIDA: bono;
 
 SALIDA: SELECCIONAR nombre, salario DE empleados DONDE > salario 2500;
@@ -130,16 +145,13 @@ SALIDA: SELECCIONAR departamento, salario DE empleados
 
 FIN
 
-'''
+''' 
 
-lexer = lex.lex()
 
-# Cargar el código en el lexer
-lexer.input(data)
+#lexer.input(data)
 
-# Leer e imprimir tokens
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    print(tok)
+#while True:
+#    tok = lexer.token()
+#    if not tok:
+#        break
+#    print(tok)

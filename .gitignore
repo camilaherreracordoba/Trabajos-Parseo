@@ -15,3 +15,17 @@ build/
 # IDE files
 .vscode/
 .idea/
+ply/
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+
+codigo/parsetab.py
+codigo/parser.out
+
+# Archivos varios
+*.log
