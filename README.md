@@ -68,11 +68,11 @@ HACER: | Indica el bloque de sentencias a ejecutar si la condición del bucle es
 VAR | Inicia la declaración de una variable
 TABLA | Indica que la variable declarada es una tabla
 
-| Datos literales | Valor |
-|-------------------|------ |
-| ENTERO | combinaciones con los digitos 0-9 |
-| BOOLEANO | "VERDADERO" o "FALSO" | 
-| CADENA | secuencias de caracteres que inician con alguna letra y pueden contener guiones ("-" y "_") o digitos. |
+| Datos literales | 
+|-------------------|
+| ENTERO |
+| BOOLEANO | 
+| CADENA |
 
 
 #### Palabra reservadas operaciones procedurales
