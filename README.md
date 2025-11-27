@@ -278,59 +278,59 @@ FIN
 | Pila | Entrada | Transición |
 | -- | -- | -- |
 | `λ` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q0, λ, λ) = (q1, #) |
-| `#` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q1, λ, λ) = (q1, <programa>) |
-| `#<programa>` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <programa>) = (q2, "INICIO:" <bloque> "FIN") |
+| `#` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q1, λ, λ) = (q1, `<programa>`) |
+| `#<programa>` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <programa>) = (q2, "INICIO:" `<bloque>` "FIN") |
 | `#"FIN" <bloque> "INICIO:"` | `INICIO: VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "INICIO:", "INICIO:") = (q2, λ) |
-| `#"FIN" <bloque>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <bloque>) = (q2, <sentencia> <bloque>) |
-| `#"FIN" <bloque><sentencia>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <sentencia>) = (q2, <declaracion_var>";") |
-| `#"FIN"<bloque>";"<declaracion_var>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <declaracion_var>) = (q2, "VAR" <identificador> "=" <expresion>) |
+| `#"FIN" <bloque>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <bloque>) = (q2, `<sentencia>` `<bloque>`) |
+| `#"FIN" <bloque><sentencia>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<sentencia>`) = (q2, `<declaracion_var>`";") |
+| `#"FIN"<bloque>";"<declaracion_var>` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<declaracion_var>`) = (q2, "VAR" `<identificador>` "=" `<expresion>`) |
 | `#"FIN"<bloque>";"<expresion>"="<identificador>"VAR"` | `VAR x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "VAR", "VAR") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>"="<identificador>` | `x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <identificador>) = (q2, <letra><caracteres>) |
-| `#"FIN"<bloque>";"<expresion>"="<caracteres><letra>` | `x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <letra>) = (q2, "x") |
+| `#"FIN"<bloque>";"<expresion>"="<identificador>` | `x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <identificador>) = (q2, `<letra>``<caracteres>`) |
+| `#"FIN"<bloque>";"<expresion>"="<caracteres><letra>` | `x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<letra>`) = (q2, "x") |
 | `#"FIN"<bloque>";"<expresion>"="<caracteres>"x"` | `x = 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "x", "x") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>"="<caracteres>` | `= 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <caracteres>) = (q2, λ) |
+| `#"FIN"<bloque>";"<expresion>"="<caracteres>` | `= 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<caracteres>`) = (q2, λ) |
 | `#"FIN"<bloque>";"<expresion>"="` | `= 7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "=", "=") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <expresion>) = (q2, <literal>) |
-| `#"FIN"<bloque>";"<literal>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <literal>) = (q2, <entero>) |
-| `#"FIN"<bloque>";"<entero>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <entero>) = (q2, "7") |
+| `#"FIN"<bloque>";"<expresion>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<expresion>`) = (q2, `<literal>`) |
+| `#"FIN"<bloque>";"<literal>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<literal>`) = (q2, `<entero>`) |
+| `#"FIN"<bloque>";"<entero>` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<entero>`) = (q2, "7") |
 | `#"FIN"<bloque>";""7"` | `7; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "7", "7") = (q2, λ) |
 | `#"FIN"<bloque>";"` | `; VAR y = 9; SALIDA: + x y; FIN` | δ(q2, ";", ";") = (q2, λ) |
-| `#"FIN"<bloque>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <bloque>) = (q2, <sentencia> <bloque>) |
-| `#"FIN"<bloque><sentencia>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <sentencia>) = (q2, <declaracion_var>";") |
-| `#"FIN"<bloque>";"<declaracion_var>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <declaracion_var>) = (q2, "VAR" <identificador> "=" <expresion>) |
+| `#"FIN"<bloque>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<bloque>`) = (q2, `<sentencia>` `<bloque>`) |
+| `#"FIN"<bloque><sentencia>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<sentencia>`) = (q2, `<declaracion_var>`";") |
+| `#"FIN"<bloque>";"<declaracion_var>` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<declaracion_var>`) = (q2, "VAR" `<identificador>` "=" `<expresion>`) |
 | `#"FIN"<bloque>";"<expresion>"="<identificador>"VAR"` | `VAR y = 9; SALIDA: + x y; FIN` | δ(q2, "VAR", "VAR") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>"="<identificador>` | `y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <identificador>) = (q2, <letra><caracteres>) |
-| `#"FIN"<bloque>";"<expresion>"="<caracteres><letra>` | `y = 9; SALIDA: + x y; FIN` | δ(q2, λ, <letra>) = (q2, "y") |
+| `#"FIN"<bloque>";"<expresion>"="<identificador>` | `y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<identificador>`) = (q2, `<letra>``<caracteres>`) |
+| `#"FIN"<bloque>";"<expresion>"="<caracteres><letra>` | `y = 9; SALIDA: + x y; FIN` | δ(q2, λ, `<letra>`) = (q2, "y") |
 | `#"FIN"<bloque>";"<expresion>"="<caracteres>"y"` | `y = 9; SALIDA: + x y; FIN` | δ(q2, "y", "y") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>"="<caracteres>` | `= 9; SALIDA: + x y; FIN` | δ(q2, λ, <caracteres>) = (q2, λ) |
+| `#"FIN"<bloque>";"<expresion>"="<caracteres>` | `= 9; SALIDA: + x y; FIN` | δ(q2, λ, `<caracteres>`) = (q2, λ) |
 | `#"FIN"<bloque>";"<expresion>"="` | `= 9; SALIDA: + x y; FIN` | δ(q2, "=", "=") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>` | `= 9; SALIDA: + x y; FIN` | δ(q2, λ, <expresion>) = (q2, <literal>) |
-| `#"FIN"<bloque>";"<literal>` | `9; SALIDA: + x y; FIN` | δ(q2, λ, <literal>) = (q2, <entero>) |
-| `#"FIN"<bloque>";"<entero>` | `9; SALIDA: + x y; FIN` | δ(q2, λ, <entero>) = (q2, "9") |
+| `#"FIN"<bloque>";"<expresion>` | `= 9; SALIDA: + x y; FIN` | δ(q2, λ, `<expresion>`) = (q2, `<literal>`) |
+| `#"FIN"<bloque>";"<literal>` | `9; SALIDA: + x y; FIN` | δ(q2, λ, `<literal>`) = (q2, `<entero>`) |
+| `#"FIN"<bloque>";"<entero>` | `9; SALIDA: + x y; FIN` | δ(q2, λ, `<entero>`) = (q2, "9") |
 | `#"FIN"<bloque>";""9"` | `9; SALIDA: + x y; FIN` | δ(q2, "9", "9") = (q2, λ) |
 | `#"FIN"<bloque>";"` | `; SALIDA: + x y; FIN` | δ(q2, ";", ";") = (q2, λ) |
-| `#"FIN"<bloque>` | `SALIDA: + x y; FIN` | δ(q2, λ, <bloque>) = (q2, <sentencia> <bloque>) |
-| `#"FIN"<bloque><sentencia>` | `SALIDA: + x y; FIN` | δ(q2, λ, <sentencia>) = (q2, <salida>) |
-| `#"FIN"<bloque><salida>` | `SALIDA: + x y; FIN` | δ(q2, λ, <salida>) = (q2, "SALIDA:" <expresion>) |
+| `#"FIN"<bloque>` | `SALIDA: + x y; FIN` | δ(q2, λ, `<bloque>`) = (q2, `<sentencia>` `<bloque>`) |
+| `#"FIN"<bloque><sentencia>` | `SALIDA: + x y; FIN` | δ(q2, λ, `<sentencia>`) = (q2, `<salida>`) |
+| `#"FIN"<bloque><salida>` | `SALIDA: + x y; FIN` | δ(q2, λ, `<salida>`) = (q2, "SALIDA:" `<expresion>`) |
 | `#"FIN"<bloque>";"<expresion>"SALIDA:"` | `SALIDA: + x y; FIN` | δ(q2, "SALIDA:", "SALIDA:") = (q2, λ) |
-| `#"FIN"<bloque>";"<expresion>` | `+ x y; FIN` | δ(q2, λ, <expresion>) = (q2, <expresion_prefija>) |
-| `#"FIN"<bloque>";"<expresion_prefija>` | `+ x y; FIN` | δ(q2, λ, <expresion_prefija>) = (q2, <op_aritmetico><operando><operando>) |
-| `#"FIN"<bloque>";"<operando><operando><op_aritmetico>` | `+ x y; FIN` | δ(q2, λ, <op_aritmetico) = (q2, "+") |
+| `#"FIN"<bloque>";"<expresion>` | `+ x y; FIN` | δ(q2, λ, `<expresion>`) = (q2, `<expresion_prefija>`) |
+| `#"FIN"<bloque>";"<expresion_prefija>` | `+ x y; FIN` | δ(q2, λ, `<expresion_prefija>`) = (q2, `<op_aritmetico>``<operando>``<operando>`) |
+| `#"FIN"<bloque>";"<operando><operando><op_aritmetico>` | `+ x y; FIN` | δ(q2, λ, `<op_aritmetico>`) = (q2, "+") |
 | `#"FIN"<bloque>";"<operando><operando>"+"` | `+ x y; FIN` | δ(q2, "+", "+") = (q2, λ) |
-| `#"FIN"<bloque>";"<operando><operando>` | `x y; FIN` | δ(q2, λ, <operando>) = (q2, <literal>) |
-| `#"FIN"<bloque>";"<operando><literal>` | `x y; FIN` | δ(q2, λ, <literal>) = (q2, <identificador>) |
-| `#"FIN"<bloque>";"<operando><identificador>` | `x y; FIN` | δ(q2, λ, <identificador>) = (q2, <letra><caracteres>) |
-| `#"FIN"<bloque>";"<operando><caracteres><letra>` | `x y; FIN` | δ(q2, λ, <letra>) = (q2, "x") |
+| `#"FIN"<bloque>";"<operando><operando>` | `x y; FIN` | δ(q2, λ, `<operando>`) = (q2, `<literal>`) |
+| `#"FIN"<bloque>";"<operando><literal>` | `x y; FIN` | δ(q2, λ, `<literal>`) = (q2, `<identificador>`) |
+| `#"FIN"<bloque>";"<operando><identificador>` | `x y; FIN` | δ(q2, λ, `<identificador>`) = (q2, `<letra>``<caracteres>`) |
+| `#"FIN"<bloque>";"<operando><caracteres><letra>` | `x y; FIN` | δ(q2, λ, `<letra>`) = (q2, "x") |
 | `#"FIN"<bloque>";"<operando><caracteres>"x"` | `x y; FIN` | δ(q2, "x", "x") = (q2, λ) |
-| `#"FIN"<bloque>";"<operando><caracteres>` | `y; FIN` | δ(q2, λ, <caracteres>) = (q2, λ) |
-| `#"FIN"<bloque>";"<operando>` | `y; FIN` | δ(q2, λ, <operando>) = (q2, <literal>) |
-| `#"FIN"<bloque>";"<literal>` | `y; FIN` | δ(q2, λ, <literal>) = (q2, <identificador>) |
-| `#"FIN"<bloque>";"<identificador>` | `y; FIN` | δ(q2, λ, <identificador>) = (q2, <letra><caracteres>) |
-| `#"FIN"<bloque>";"<caracteres><letra>` | `y; FIN` | δ(q2, λ, <letra>) = (q2, "y") |
+| `#"FIN"<bloque>";"<operando><caracteres>` | `y; FIN` | δ(q2, λ, `<caracteres>`) = (q2, λ) |
+| `#"FIN"<bloque>";"<operando>` | `y; FIN` | δ(q2, λ, `<operando>`) = (q2, `<literal>`) |
+| `#"FIN"<bloque>";"<literal>` | `y; FIN` | δ(q2, λ, `<literal>`) = (q2, `<identificador>`) |
+| `#"FIN"<bloque>";"<identificador>` | `y; FIN` | δ(q2, λ, `<identificador>`) = (q2, `<letra>``<caracteres>`) |
+| `#"FIN"<bloque>";"<caracteres><letra>` | `y; FIN` | δ(q2, λ, `<letra>`) = (q2, "y") |
 | `#"FIN"<bloque>";"<caracteres>"y"` | `y; FIN` | δ(q2, "y", "y") = (q2, λ) |
-| `#"FIN"<bloque>";"<caracteres>` | `; FIN` | δ(q2, λ, <caracteres>) = (q2, λ) |
+| `#"FIN"<bloque>";"<caracteres>` | `; FIN` | δ(q2, λ, `<caracteres>`) = (q2, λ) |
 | `#"FIN"<bloque>";"` | `; FIN` | δ(q2, ";", ";") = (q2, λ) |
-| `#"FIN"<bloque>` | `FIN` | δ(q2, λ, <bloque>) = (q2, λ) |
+| `#"FIN"<bloque>` | `FIN` | δ(q2, λ, `<bloque>`) = (q2, λ) |
 | `#"FIN"` | `FIN` | δ(q2, "FIN", "FIN") = (q2, λ) |
 | `#` | `λ` | δ(q2, λ, #) = (q3, λ) |
 | `λ` | `λ` | ACCEPT |
@@ -356,103 +356,103 @@ Derivaciones usadas para el ejemplo:
 <op_aritmetico> ::= "+"
 ```
 Primeros: 
-PRIM(<programa>) = {"INICIO:"}
-
-PRIM(<bloque>) = {"VAR", "SALIDA:",λ}
-
-PRIM(<sentencia>) = {"VAR", "SALIDA:"}
-
-PRIM(<declaracion_var>) = {"VAR"}
-
-PRIM(<salida>) = {"SALIDA:"}
-
-PRIM(<expresion>) = {"7", "9", "+"}
-
-PRIM(<expresion_prefija>) = {+}
-
-PRIM(<operando>) = {"x", "y", "7", "9"}
-
-PRIM(<literal>) = {"7", "9"}
-
-PRIM(<entero>) = {"7", "9"}
-
-PRIM(<identificador>) = {"x", "y"}
-
-PRIM(<caracteres>) = {λ}
-
-PRIM(<letra>) = {"x", "y"}
-
-PRIM(<digito>) = {"7", "9"}
-
-PRIM(<op_aritmetico>) = {"+"}
+> PRIM(<programa>) = {"INICIO:"}
+>
+> PRIM(<bloque>) = {"VAR", "SALIDA:",λ}
+>
+>PRIM(<sentencia>) = {"VAR", "SALIDA:"}
+>
+>PRIM(<declaracion_var>) = {"VAR"}
+>
+>PRIM(<salida>) = {"SALIDA:"}
+>
+>PRIM(<expresion>) = {"7", "9", "+"}
+>
+>PRIM(<expresion_prefija>) = {+}
+>
+>PRIM(<operando>) = {"x", "y", "7", "9"}
+>
+>PRIM(<literal>) = {"7", "9"}
+>
+>PRIM(<entero>) = {"7", "9"}
+>
+>PRIM(<identificador>) = {"x", "y"}
+>
+>PRIM(<caracteres>) = {λ}
+>
+>PRIM(<letra>) = {"x", "y"}
+>
+>PRIM(<digito>) = {"7", "9"}
+>
+>PRIM(<op_aritmetico>) = {"+"}
 
 Siguientes: 
 
-SIG(<programa>) = {$}
-
-SIG(<bloque>) = {"FIN"}
-
-SIG(<sentencia>) = {"VAR", "SALIDA:", "FIN"}
-
-SIG(<declaracion_var>) = {";"}
-
-SIG(<salida>) = {";"}
-
-SIG(<expresion>) = {";"}
-
-SIG(<expresion_prefija>) = {";"} 
-
-SIG(<operando>) = {";", "x", "y", "7", "9"}
-
-SIG(<literal>) = {";", "x", "y", "7", "9"}
-
-SIG(<entero>) = {";", "x", "y", "7", "9"}
-
-SIG(<identificador>) = {"=", ";", "x", "y", "7", "9"}
-
-SIG(<caracteres>) = {"=", ";", "x", "y", "7", "9"}
-
-SIG(<letra>) = {"=", ";", "x", "y", "7", "9"}
-
-SIG(<digito>) =  {";", "x", "y", "7", "9"}
-
-SIG(<op_aritmetico>) = {"x", "y", "7", "9"}
+>SIG(<programa>) = {$}
+>
+>SIG(<bloque>) = {"FIN"}
+>
+>SIG(<sentencia>) = {"VAR", "SALIDA:", "FIN"}
+>
+>SIG(<declaracion_var>) = {";"}
+>
+>SIG(<salida>) = {";"}
+>
+>SIG(<expresion>) = {";"}
+>
+>SIG(<expresion_prefija>) = {";"} 
+>
+>SIG(<operando>) = {";", "x", "y", "7", "9"}
+>
+>SIG(<literal>) = {";", "x", "y", "7", "9"}
+>
+>SIG(<entero>) = {";", "x", "y", "7", "9"}
+>
+>SIG(<identificador>) = {"=", ";", "x", "y", "7", "9"}
+>
+>SIG(<caracteres>) = {"=", ";", "x", "y", "7", "9"}
+>
+>SIG(<letra>) = {"=", ";", "x", "y", "7", "9"}
+>
+>SIG(<digito>) =  {";", "x", "y", "7", "9"}
+>
+>SIG(<op_aritmetico>) = {"x", "y", "7", "9"}
 
 Predicciones:
 
-PRED(<programa> ::= "INICIO:" <bloque> "FIN") = { "INICIO:" }
-
-PRED(<bloque>) = ( PRED(<bloque> ::= <sentencia> <bloque>) = { "VAR", "SALIDA:" } U PRED(<bloque> ::= λ) = { "FIN" } ) => PRED(<bloque>) = { "VAR", "SALIDA:","FIN" }
-
-PRED(<sentencia>) = ( PRED(<sentencia> ::= <declaracion_var> ";") = { "VAR" }U PRED(<sentencia> ::= <salida> ";") = { "SALIDA:" } )=> PRED(<sentencia>) = { "VAR", "SALIDA:" }
-
-PRED(<declaracion_var> ::= "VAR" <identificador> "=" <expresion>) = { "VAR" }
-
-PRED(<salida> ::= "SALIDA:" <expresion>) = { "SALIDA:" }
-
-PRED(<expresion>) = ( PRED(<expresion> ::= <literal>) = { "7", "9" } U PRED(<expresion> ::= <expresion_prefija>) = { "+" } ) => PRED(<expresion>) = { "7", "9", "+" }
-
-PRED(<expresion_prefija> ::= <op_aritmetico> <operando> <operando>) = { "+" }
-
-PRED(<operando>) = ( PRED(<operando> ::= <identificador>) = { "x", "y" } U PRED(<operando> ::= <literal>) = { "7", "9" } ) => PRED(<operando>) = { "x", "y", "7", "9" }
-
-PRED(<literal> ::= <entero>) = { "7", "9" }
-
-PRED(<entero> ::= <digito>) = { "7", "9" }
-
-PRED(<identificador> ::= <letra> <caracteres>) = { "x", "y" }
-
-PRED(<caracteres> ::= λ) = { "=", "x", "y", "7", "9", ";" }
-
-PRED(<letra> ::= "x") = { "x" }
-
-PRED(<letra> ::= "y") = { "y" }
-
-PRED(<digito> ::= "7") = { "7" }
-
-PRED(<digito> ::= "9") = { "9" }
-
-PRED(<op_aritmetico> ::= "+") = { "+" }
+>PRED(<programa> ::= "INICIO:" <bloque> "FIN") = { "INICIO:" }
+>
+>PRED(<bloque>) = ( PRED(<bloque> ::= <sentencia> <bloque>) = { "VAR", "SALIDA:" } U PRED(<bloque> ::= λ) = { "FIN" } ) => PRED(<bloque>) = { "VAR", "SALIDA:","FIN" }
+>
+>PRED(<sentencia>) = ( PRED(<sentencia> ::= <declaracion_var> ";") = { "VAR" }U PRED(<sentencia> ::= <salida> ";") = { "SALIDA:" } )=> PRED(<sentencia>) = { "VAR", "SALIDA:" }
+>
+>PRED(<declaracion_var> ::= "VAR" <identificador> "=" <expresion>) = { "VAR" }
+>
+>PRED(<salida> ::= "SALIDA:" <expresion>) = { "SALIDA:" }
+>
+>PRED(<expresion>) = ( PRED(<expresion> ::= <literal>) = { "7", "9" } U PRED(<expresion> ::= <expresion_prefija>) = { "+" } ) => PRED(<expresion>) = { "7", "9", "+" }
+>
+>PRED(<expresion_prefija> ::= <op_aritmetico> <operando> <operando>) = { "+" }
+>
+>PRED(<operando>) = ( PRED(<operando> ::= <identificador>) = { "x", "y" } U PRED(<operando> ::= <literal>) = { "7", "9" } ) => PRED(<operando>) = { "x", "y", "7", "9" }
+>
+>PRED(<literal> ::= <entero>) = { "7", "9" }
+>
+>PRED(<entero> ::= <digito>) = { "7", "9" }
+>
+>PRED(<identificador> ::= <letra> <caracteres>) = { "x", "y" }
+>
+>PRED(<caracteres> ::= λ) = { "=", "x", "y", "7", "9", ";" }
+>
+>PRED(<letra> ::= "x") = { "x" }
+>
+>PRED(<letra> ::= "y") = { "y" }
+>
+>PRED(<digito> ::= "7") = { "7" }
+>
+>PRED(<digito> ::= "9") = { "9" }
+>
+>PRED(<op_aritmetico> ::= "+") = { "+" }
 
 | No terminal            | INICIO: | VAR | SALIDA: | x   | y   | 7   | 9   | +   | =   | ;   | FIN | $ |
 |------------------------|:-------:|:---:|:-------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:-:|
