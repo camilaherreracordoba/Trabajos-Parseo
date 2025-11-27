@@ -27,5 +27,8 @@ __pycache__/
 codigo/parsetab.py
 codigo/parser.out
 
+arbol
+arbol.pdf
+
 # Archivos varios
 *.log

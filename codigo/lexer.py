@@ -27,43 +27,42 @@ tokens = [
     'IDENTIFICADOR',
     'ENTERO',
     'CADENA',
-
-    'IGUAL', 'PUNTOYCOMA', 'CORCHETE_IZQ', 'CORCHETE_DER',
-    'LLAVE_IZQ', 'LLAVE_DER', 'COMA', 'DOSPUNTOS',
-
+    'IGUAL', 
+    'PUNTOYCOMA', 
+    'CORCHETE_IZQ', 'CORCHETE_DER',
+    'LLAVE_IZQ', 'LLAVE_DER', 
+    'COMA', 'DOSPUNTOS',
     'MAS', 'MENOS', 'MULT', 'DIV', 'MOD',
-
     'IGUALIGUAL', 'DISTINTO', 'MAYOR', 'MENOR',
-
     'AND', 'OR', 'NOT',
 ] + list(reserved.values())
 
 # ----------- simbolos --------------------------------------
-t_PUNTOYCOMA   = r';'
+t_PUNTOYCOMA = r';'
 t_CORCHETE_IZQ = r'\['
 t_CORCHETE_DER = r'\]'
-t_LLAVE_IZQ    = r'\{'
-t_LLAVE_DER    = r'\}'
-t_COMA         = r','
-t_DOSPUNTOS    = r':'
+t_LLAVE_IZQ = r'\{'
+t_LLAVE_DER = r'\}'
+t_COMA = r','
+t_DOSPUNTOS = r':'
 # --------- operadores ------------------
 # comparacion
-t_IGUALIGUAL   = r'=='
-t_DISTINTO     = r'!='
-t_MAYOR        = r'>'
-t_MENOR        = r'<'
+t_IGUALIGUAL = r'=='
+t_DISTINTO = r'!='
+t_MAYOR = r'>'
+t_MENOR = r'<'
 # asignacion
-t_IGUAL        = r'='
+t_IGUAL = r'='
 # logicos
-t_AND          = r'&'
-t_OR           = r'\|'
-t_NOT          = r'!'
+t_AND = r'&'
+t_OR = r'\|'
+t_NOT = r'!'
 # aritmeticos
-t_MAS          = r'\+'
-t_MENOS        = r'-'
-t_MULT         = r'\*'
-t_DIV          = r'/'
-t_MOD          = r'%'
+t_MAS = r'\+'
+t_MENOS = r'-'
+t_MULT = r'\*'
+t_DIV = r'/'
+t_MOD = r'%'
 # --------------------------------------
 #-------------- Literales ----------------- 
 # enteros
@@ -103,55 +102,3 @@ def t_comment(t):
     pass
 
 lexer = lex.lex()
-
-
-data = '''
-INICIO:
-VAR x = 7;
-VAR y = 9;
-SALIDA: + x y;
-FIN
-'''
-data0 = '''
-INICIO:
-
-VAR TABLA empleados = [
-	{ nombre: "Ana", edad: 30, salario: 2000, departamento: "Ventas" },
-	{ nombre: "Luis", edad: 45, salario: 3000, departamento: "Ventas" },
-	{ nombre: "Marta", edad: 29, salario: 2500, departamento: "IT" },
-	{ nombre: "Pedro", edad: 35, salario: 2800, departamento: "IT" },
-];
-
-VAR bono = + 500 200;
-
-bono = * bono 2;
-
-SALIDA: bono;
-
-SI: > bono 1000 ENTONCES:
-	SALIDA: "Bono mayor a mil"
-SINO:
-	SALIDA: "Bono menor o igual a mil";
-
-MIENTRAS: < bono 3000 HACER:
-	bono = + bono 100;
-	SALIDA: bono;
-
-SALIDA: SELECCIONAR nombre, salario DE empleados DONDE > salario 2500;
-
-SALIDA: SELECCIONAR departamento, salario DE empleados 
-        AGRUPAR POR departamento 
-        ORDENAR POR salario;
-
-FIN
-
-''' 
-
-
-#lexer.input(data)
-
-#while True:
-#    tok = lexer.token()
-#    if not tok:
-#        break
-#    print(tok)

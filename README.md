@@ -66,9 +66,14 @@ SINO:| Indica el bloque a ejecutar si la condición es FALSA
 MIENTRAS:| Define la condición a cumplir para ejecutar un bucle (While)
 HACER: | Indica el bloque de sentencias a ejecutar si la condición del bucle es verdadera
 VAR | Inicia la declaración de una variable
-ENTERO | Indica que el tipo de dato de la variable declarada es entero
-BOOLEANO | Indica que el tipo de dato de la variable declarada es booleano
-TABLA | Indica que la variable declarada es una tabla en memoria
+TABLA | Indica que la variable declarada es una tabla
+
+| Datos literales | Valor |
+|-------------------|------ |
+| ENTERO | combinaciones con los digitos 0-9 |
+| BOOLEANO | "VERDADERO" o "FALSO" | 
+| CADENA | secuencias de caracteres que inician con alguna letra y pueden contener guiones ("-" y "_") o digitos. |
+
 
 #### Palabra reservadas operaciones procedurales
 
@@ -88,7 +93,7 @@ Los identificadores minimamente estan compuestos por una letra en minúscula (a-
 |Tipo | Operador |
 |-----|----------|
 | Aritmetico | "+", "-", "/", "*", "%" |
-| Logico | "&", "\|" |
+| Logico | "&", "\|", "IGUALES" |
 | Comparación | "==", "!=", ">", "<" | 
 | Asignación | "=" |
 | Negación | "!" | 
@@ -108,7 +113,7 @@ Regla | Especificación
 Estructura del programa | El programa siempre empieza con la palabra INICIO, seguida por un bloque de sentencias y finaliza con FIN.
 Bloque | Está compuesto por cero o más sentencias
 Sentencia | Puede ser la declaracion o asignación de una variable, una estructura condicional, un bucle o una salida por pantalla. Todas, menos las sentencias condicionales y los bucles, deben terminar con ";".
-Declaración | Inicializa una variable iniciando con la palabra VAR y luego indicando su tipo, su identificador y su valor inicial.
+Declaración | Inicializa una variable iniciando con la palabra VAR y luego indicando su identificador y su valor inicial.
 Asignación | Asigna un valor a una variable ya declarada, indicando su identificador seguido por "=" y su nuevo valor.
 Salida | Imprime una expresion númerica o booleana.
 Condicional | Estructura de control que selecciona un bloque dependiendo de una expresión booleana
@@ -165,8 +170,8 @@ SALIDA: SELECCIONAR departamento, salario DE empleados
 FIN
 
 ```
-
-### Ejemplo de derivación por izquierda
+### TP 3
+#### Ejemplo de derivación por izquierda
 
 ```
 INICIO: 
@@ -211,7 +216,7 @@ FIN
 | `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + x y ; FIN` | **Aceptada** |
 
 
-### Ejemplo de derivacion por derecha
+#### Ejemplo de derivacion por derecha
 ```
 INICIO: 
 VAR x = 7; 
@@ -223,16 +228,16 @@ FIN
 | **Cadena actual** | **Próxima producción a aplicar** |
 |--------------------|----------------------------------|
 | `<programa>` | ` <programa> ::= "INICIO:" <bloque> "FIN" ` |
-| `INICIO: <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque> | λ ` |
-| `INICIO: <sentencia> <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque> | λ ` |
-| `INICIO: <sentencia> <sentencia> <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque> | λ ` |
+| `INICIO: <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque>` | λ  |
+| `INICIO: <sentencia> <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque>` | λ |
+| `INICIO: <sentencia> <sentencia> <bloque> FIN` | ` <bloque> ::= <sentencia> <bloque> ` | λ ` |
 | `INICIO: <sentencia> <sentencia> <sentencia> <bloque> FIN` | ` <bloque> ::= λ ` |
 | `INICIO: <sentencia> <sentencia> <sentencia> FIN` | ` <sentencia> ::= <salida> ";" ` |
 | `INICIO: <sentencia> <sentencia> <salida> ; FIN` | ` <salida> ::= "SALIDA:" <expresion> ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: <expresion> ; FIN` | ` <expresion> ::= <expresion_prefija> ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: <expresion_prefija> ; FIN` | ` <expresion_prefija> ::= <op_aritmetico> <operando> <operando> ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: <op_aritmetico> <operando> <operando> ; FIN` | ` <op_aritmetico> ::= "+" ` |
-| `INICIO: <sentencia> <sentencia> SALIDA: + <operando> <operando> ; FIN` | ` <operando> ::= <identificador> | <literal> | <consulta> | <expresion_prefija> ` |
+| `INICIO: <sentencia> <sentencia> SALIDA: + <operando> <operando> ; FIN` | ` <operando> ::= <identificador> ` | `<literal>` | `<consulta>` | `<expresion_prefija> ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: + <operando> <identificador> ; FIN` | ` <identificador> ::= <letra> <caracteres> ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: + <operando> <letra> <caracteres> ; FIN` | ` <letra> ::= "y" ` |
 | `INICIO: <sentencia> <sentencia> SALIDA: + <operando> y ; FIN` | ` <caracteres> ::= λ ` |
@@ -260,7 +265,7 @@ FIN
 | `INICIO: VAR x = 7 ; VAR y = 9 ; SALIDA: + x y ; FIN` | **Aceptada** |
 
 
-### TP5: Analisis Sintactico Descendente Predictivo (ASDP LL(1))
+### TP4: Analisis Sintactico Descendente con retroceso (ASDB)
 ```
 INICIO: 
 VAR x = 7; 
@@ -268,7 +273,7 @@ VAR y = 9;
 SALIDA: + x y; 
 FIN
 ```
-![asd](asd.jff.jpg)
+![asd](ASDB.jff.jpg)
 
 | Pila | Entrada | Transición |
 | -- | -- | -- |
@@ -330,7 +335,124 @@ FIN
 | `#` | `λ` | δ(q2, λ, #) = (q3, λ) |
 | `λ` | `λ` | ACCEPT |
 
+### TP5: Analisis sintactico descendente predictivo (LL(1))
 
+Derivaciones usadas para el ejemplo:
+```bnf
+<programa> ::= "INICIO:" <bloque> "FIN"
+<bloque> ::= <sentencia> <bloque> | λ
+<sentencia> ::= <declaracion_var> ";" | <salida> ";"
+<declaracion_var> ::= "VAR" <identificador> "=" <expresion>
+<salida> ::= "SALIDA:" <expresion>
+<expresion> ::= <literal> | <expresion_prefija>
+<expresion_prefija> ::= <op_aritmetico> <operando> <operando>
+<operando> ::= <identificador> | <literal>
+<literal> ::= <entero>
+<entero> ::= <digito>
+<identificador> ::= <letra> <caracteres>
+<caracteres> ::= λ
+<letra> ::= "x" | "y"
+<digito> ::= "7" | "9"
+<op_aritmetico> ::= "+"
+```
+Primeros: 
+PRIM(<programa>) = {"INICIO:"}
+
+PRIM(<bloque>) = {"VAR", "SALIDA:",λ}
+
+PRIM(<sentencia>) = {"VAR", "SALIDA:"}
+
+PRIM(<declaracion_var>) = {"VAR"}
+
+PRIM(<salida>) = {"SALIDA:"}
+
+PRIM(<expresion>) = {"7", "9", "+"}
+
+PRIM(<expresion_prefija>) = {+}
+
+PRIM(<operando>) = {"x", "y", "7", "9"}
+
+PRIM(<literal>) = {"7", "9"}
+
+PRIM(<entero>) = {"7", "9"}
+
+PRIM(<identificador>) = {"x", "y"}
+
+PRIM(<caracteres>) = {λ}
+
+PRIM(<letra>) = {"x", "y"}
+
+PRIM(<digito>) = {"7", "9"}
+
+PRIM(<op_aritmetico>) = {"+"}
+
+Siguientes: 
+
+SIG(<programa>) = {$}
+
+SIG(<bloque>) = {"FIN"}
+
+SIG(<sentencia>) = {"VAR", "SALIDA:", "FIN"}
+
+SIG(<declaracion_var>) = {";"}
+
+SIG(<salida>) = {";"}
+
+SIG(<expresion>) = {";"}
+
+SIG(<expresion_prefija>) = {";"} 
+
+SIG(<operando>) = {";", "x", "y", "7", "9"}
+
+SIG(<literal>) = {";", "x", "y", "7", "9"}
+
+SIG(<entero>) = {";", "x", "y", "7", "9"}
+
+SIG(<identificador>) = {"=", ";", "x", "y", "7", "9"}
+
+SIG(<caracteres>) = {"=", ";", "x", "y", "7", "9"}
+
+SIG(<letra>) = {"=", ";", "x", "y", "7", "9"}
+
+SIG(<digito>) =  {";", "x", "y", "7", "9"}
+
+SIG(<op_aritmetico>) = {"x", "y", "7", "9"}
+
+Predicciones:
+
+PRED(<programa> ::= "INICIO:" <bloque> "FIN") = { "INICIO:" }
+
+PRED(<bloque>) = ( PRED(<bloque> ::= <sentencia> <bloque>) = { "VAR", "SALIDA:" } U PRED(<bloque> ::= λ) = { "FIN" } ) => PRED(<bloque>) = { "VAR", "SALIDA:","FIN" }
+
+PRED(<sentencia>) = ( PRED(<sentencia> ::= <declaracion_var> ";") = { "VAR" }U PRED(<sentencia> ::= <salida> ";") = { "SALIDA:" } )=> PRED(<sentencia>) = { "VAR", "SALIDA:" }
+
+PRED(<declaracion_var> ::= "VAR" <identificador> "=" <expresion>) = { "VAR" }
+
+PRED(<salida> ::= "SALIDA:" <expresion>) = { "SALIDA:" }
+
+PRED(<expresion>) = ( PRED(<expresion> ::= <literal>) = { "7", "9" } U PRED(<expresion> ::= <expresion_prefija>) = { "+" } ) => PRED(<expresion>) = { "7", "9", "+" }
+
+PRED(<expresion_prefija> ::= <op_aritmetico> <operando> <operando>) = { "+" }
+
+PRED(<operando>) = ( PRED(<operando> ::= <identificador>) = { "x", "y" } U PRED(<operando> ::= <literal>) = { "7", "9" } ) => PRED(<operando>) = { "x", "y", "7", "9" }
+
+PRED(<literal> ::= <entero>) = { "7", "9" }
+
+PRED(<entero> ::= <digito>) = { "7", "9" }
+
+PRED(<identificador> ::= <letra> <caracteres>) = { "x", "y" }
+
+PRED(<caracteres> ::= λ) = { "=", "x", "y", "7", "9", ";" }
+
+PRED(<letra> ::= "x") = { "x" }
+
+PRED(<letra> ::= "y") = { "y" }
+
+PRED(<digito> ::= "7") = { "7" }
+
+PRED(<digito> ::= "9") = { "9" }
+
+PRED(<op_aritmetico> ::= "+") = { "+" }
 
 | No terminal            | INICIO: | VAR | SALIDA: | x   | y   | 7   | 9   | +   | =   | ;   | FIN | $ |
 |------------------------|:-------:|:---:|:-------:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:-:|
