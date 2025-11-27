@@ -68,13 +68,6 @@ HACER: | Indica el bloque de sentencias a ejecutar si la condición del bucle es
 VAR | Inicia la declaración de una variable
 TABLA | Indica que la variable declarada es una tabla
 
-| Datos literales | 
-|-------------------|
-| ENTERO |
-| BOOLEANO | 
-| CADENA |
-
-
 #### Palabra reservadas operaciones procedurales
 
 Palabra |  Significado
